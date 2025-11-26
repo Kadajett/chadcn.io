@@ -1,0 +1,46 @@
+{
+  "name": "chadcn",
+  "version": "0.0.1",
+  "private": true,
+  "description": "Hyper-dense UI component library for control panels and professional tool interfaces",
+  "keywords": [
+    "react",
+    "components",
+    "ui",
+    "design-system",
+    "control-panel",
+    "dense-ui",
+    "photoshop",
+    "blender"
+  ],
+  "homepage": "https://chadcn.io",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kadajett/chadcn"
+  },
+  "license": "MIT",
+  "author": "kadajett",
+  "type": "module",
+  "scripts": {
+    "build": "turbo build",
+    "dev": "turbo dev",
+    "lint": "biome check .",
+    "lint:fix": "biome check --write .",
+    "format": "biome format --write .",
+    "test": "turbo test",
+    "storybook": "pnpm --filter @chadcn/ui storybook",
+    "build-storybook": "pnpm --filter @chadcn/ui build-storybook",
+    "clean": "turbo clean && rm -rf node_modules",
+    "typecheck": "turbo typecheck"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^1.9.4",
+    "@types/node": "^22.9.0",
+    "turbo": "^2.3.0",
+    "typescript": "^5.6.3"
+  },
+  "packageManager": "pnpm@9.12.3",
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}

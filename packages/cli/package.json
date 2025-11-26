@@ -1,0 +1,56 @@
+{
+  "name": "chadcn",
+  "version": "0.0.1",
+  "description": "CLI for adding chadcn components to your project",
+  "keywords": [
+    "cli",
+    "react",
+    "components",
+    "ui"
+  ],
+  "homepage": "https://chadcn.io",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kadajett/chadcn",
+    "directory": "packages/cli"
+  },
+  "license": "MIT",
+  "author": "kadajett",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "bin": {
+    "chadcn": "./dist/index.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "chalk": "^5.3.0",
+    "commander": "^12.1.0",
+    "cosmiconfig": "^9.0.0",
+    "execa": "^9.5.1",
+    "fs-extra": "^11.2.0",
+    "ora": "^8.1.0",
+    "prompts": "^2.4.2",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/fs-extra": "^11.0.4",
+    "@types/prompts": "^2.4.9",
+    "tsup": "^8.3.5",
+    "typescript": "^5.6.3"
+  }
+}
