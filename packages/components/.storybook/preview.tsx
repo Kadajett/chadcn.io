@@ -1,5 +1,7 @@
 import type { Preview } from '@storybook/react';
 import { withThemeByDataAttribute } from '@storybook/addon-themes';
+import * as React from 'react';
+import { TooltipProvider } from '../src/components/Tooltip';
 import '../src/styles/globals.css';
 
 const preview: Preview = {
@@ -43,6 +45,12 @@ const preview: Preview = {
       defaultTheme: 'photoshop',
       attributeName: 'data-theme',
     }),
+    // Wrap all stories with TooltipProvider
+    (Story) => (
+      <TooltipProvider delayDuration={300}>
+        <Story />
+      </TooltipProvider>
+    ),
   ],
 };
 

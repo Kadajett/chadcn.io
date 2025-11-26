@@ -90,3 +90,81 @@ export { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider } from './comp
 // Utility Components
 export { ScrollArea, ScrollBar } from './components/ScrollArea';
 export { Separator } from './components/Separator';
+
+// Status & Feedback Components
+export {
+  StatusBar,
+  StatusBarItem,
+  StatusBarSeparator,
+  StatusBarCoordinates,
+  StatusBarZoom,
+  StatusBarProgress,
+} from './components/StatusBar';
+export type {
+  StatusBarProps,
+  StatusBarItemProps,
+  StatusBarCoordinatesProps,
+  StatusBarZoomProps,
+  StatusBarProgressProps,
+} from './components/StatusBar';
+
+export { ProgressIndicator, BatchProgress } from './components/ProgressIndicator';
+export type {
+  ProgressIndicatorProps,
+  ProgressStatus,
+  BatchProgressProps,
+  BatchProgressItem,
+} from './components/ProgressIndicator';
+
+export { Toast, ToastViewport, ToastProvider, useToast, createToast } from './components/Toast';
+export type {
+  ToastProps,
+  ToastData,
+  ToastType,
+  ToastPosition,
+  ToastViewportProps,
+  ToastProviderProps,
+} from './components/Toast';
+
+// Creative Tool Components
+export { LayerStack, LayerStackHeader } from './components/LayerStack';
+export type { Layer, LayerStackProps, LayerStackHeaderProps } from './components/LayerStack';
+
+export { SwatchPalette, presetPalettes } from './components/SwatchPalette';
+export type { SwatchPaletteProps, Swatch, SwatchGroup } from './components/SwatchPalette';
+
+export { GradientEditor, createDefaultGradient, gradientToCSS } from './components/GradientEditor';
+export type {
+  GradientEditorProps,
+  GradientStop,
+  GradientType,
+  GradientValue,
+} from './components/GradientEditor';
+
+// Navigation Components (extended)
+export { Breadcrumbs } from './components/Breadcrumbs';
+export type { BreadcrumbsProps, BreadcrumbItem } from './components/Breadcrumbs';
+
+export { CommandPalette } from './components/CommandPalette';
+export type { CommandPaletteProps, Command, CommandGroup } from './components/CommandPalette';
+
+export { MenuBar } from './components/MenuBar';
+export type {
+  MenuBarProps,
+  MenuDefinition,
+  MenuItem,
+  MenuAction,
+  MenuCheckbox,
+  MenuRadioGroup,
+  MenuSeparator,
+  MenuSubmenu,
+} from './components/MenuBar';
+
+// Layout Components (extended)
+export { ResizablePanes, SplitPane } from './components/ResizablePanes';
+export type {
+  ResizablePanesProps,
+  SplitPaneProps,
+  PaneConfig,
+  PaneDirection,
+} from './components/ResizablePanes';

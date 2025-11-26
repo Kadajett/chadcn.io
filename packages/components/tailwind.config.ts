@@ -130,13 +130,21 @@ const config: Config = {
       // Animations
       animation: {
         'fade-in': 'fadeIn 150ms ease-out',
+        'fade-out': 'fadeOut 150ms ease-out',
         'slide-down': 'slideDown 150ms ease-out',
         'slide-up': 'slideUp 150ms ease-out',
+        'swipe-out': 'swipeOut 100ms ease-out',
+        'indeterminate': 'indeterminate 1.5s ease-in-out infinite',
+        'spin-slow': 'spin 2s linear infinite',
       },
       keyframes: {
         fadeIn: {
           '0%': { opacity: '0' },
           '100%': { opacity: '1' },
+        },
+        fadeOut: {
+          '0%': { opacity: '1' },
+          '100%': { opacity: '0' },
         },
         slideDown: {
           '0%': { opacity: '0', transform: 'translateY(-4px)' },
@@ -145,6 +153,15 @@ const config: Config = {
         slideUp: {
           '0%': { opacity: '0', transform: 'translateY(4px)' },
           '100%': { opacity: '1', transform: 'translateY(0)' },
+        },
+        swipeOut: {
+          '0%': { transform: 'translateX(var(--radix-toast-swipe-end-x))' },
+          '100%': { transform: 'translateX(100%)' },
+        },
+        indeterminate: {
+          '0%': { transform: 'translateX(-100%)' },
+          '50%': { transform: 'translateX(200%)' },
+          '100%': { transform: 'translateX(-100%)' },
         },
       },
       // Transition defaults
