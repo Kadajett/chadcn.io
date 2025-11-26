@@ -20,12 +20,14 @@
     /* Panel colors */
     --panel: #323232;
     --panel-header: #3c3c3c;
+    --panel-header-text: #b0b0b0;
     --panel-border: #1e1e1e;
 
     /* Control colors */
     --control: #4a4a4a;
     --control-hover: #5a5a5a;
     --control-active: #2680eb;
+    --control-active-text: #ffffff;
     --control-disabled: #3a3a3a;
     --control-border: #1e1e1e;
 
@@ -46,6 +48,7 @@
     --accent: #2680eb;
     --accent-hover: #3891ff;
     --accent-muted: #1a5bb5;
+    --accent-text: #ffffff;
 
     /* States */
     --state-success: #2ecc71;
@@ -55,6 +58,7 @@
 
     /* Selection */
     --selection: #2680eb;
+    --selection-hover: #3891ff;
     --selection-text: #ffffff;
 
     /* Dividers */
@@ -70,6 +74,10 @@
 
     /* Focus ring */
     --focus-ring: #2680eb;
+
+    /* Gradients */
+    --gradient-accent: linear-gradient(to right, #1a5bb5, #3891ff);
+    --gradient-surface: linear-gradient(to bottom, #606060, #3a3a3a);
   }
 
   /* Blender-inspired theme - even darker */
@@ -81,11 +89,13 @@
 
     --panel: #282828;
     --panel-header: #303030;
+    --panel-header-text: #a0a0a0;
     --panel-border: #181818;
 
     --control: #404040;
     --control-hover: #4d4d4d;
     --control-active: #5680c2;
+    --control-active-text: #ffffff;
     --control-disabled: #333333;
     --control-border: #181818;
 
@@ -103,6 +113,7 @@
     --accent: #5680c2;
     --accent-hover: #6890d2;
     --accent-muted: #3d5a8a;
+    --accent-text: #ffffff;
 
     --divider: #181818;
 
@@ -123,11 +134,13 @@
 
     --panel: #353535;
     --panel-header: #404040;
+    --panel-header-text: #aaaaaa;
     --panel-border: #252525;
 
     --control: #474747;
     --control-hover: #555555;
     --control-active: #8ab4f8;
+    --control-active-text: #000000;
     --control-disabled: #3a3a3a;
     --control-border: #252525;
 
@@ -145,6 +158,7 @@
     --accent: #8ab4f8;
     --accent-hover: #a0c4ff;
     --accent-muted: #5a84c8;
+    --accent-text: #000000;
 
     --divider: #252525;
 
@@ -165,11 +179,13 @@
 
     --panel: #252526;
     --panel-header: #2d2d2d;
+    --panel-header-text: #9d9d9d;
     --panel-border: #1e1e1e;
 
     --control: #333333;
     --control-hover: #404040;
     --control-active: #0078d4;
+    --control-active-text: #ffffff;
     --control-disabled: #2a2a2a;
     --control-border: #1e1e1e;
 
@@ -187,6 +203,7 @@
     --accent: #0078d4;
     --accent-hover: #1a8fe3;
     --accent-muted: #005a9e;
+    --accent-text: #ffffff;
 
     --divider: #2d2d2d;
 
@@ -207,11 +224,13 @@
 
     --panel: #f0f0f0;
     --panel-header: #e0e0e0;
+    --panel-header-text: #555555;
     --panel-border: #c0c0c0;
 
     --control: #e0e0e0;
     --control-hover: #d0d0d0;
     --control-active: #0066cc;
+    --control-active-text: #ffffff;
     --control-disabled: #e8e8e8;
     --control-border: #b0b0b0;
 
@@ -229,6 +248,7 @@
     --accent: #0066cc;
     --accent-hover: #0077ee;
     --accent-muted: #004999;
+    --accent-text: #ffffff;
 
     --state-success: #28a745;
     --state-warning: #ffc107;
@@ -236,6 +256,7 @@
     --state-info: #17a2b8;
 
     --selection: #0066cc;
+    --selection-hover: #0077ee;
     --selection-text: #ffffff;
 
     --divider: #c0c0c0;
@@ -257,11 +278,13 @@
 
     --panel: #000000;
     --panel-header: #1a1a1a;
+    --panel-header-text: #ffffff;
     --panel-border: #ffffff;
 
     --control: #000000;
     --control-hover: #1a1a1a;
     --control-active: #ffff00;
+    --control-active-text: #000000;
     --control-disabled: #1a1a1a;
     --control-border: #ffffff;
 
@@ -279,6 +302,7 @@
     --accent: #ffff00;
     --accent-hover: #ffff66;
     --accent-muted: #cccc00;
+    --accent-text: #000000;
 
     --state-success: #00ff00;
     --state-warning: #ffff00;
@@ -286,6 +310,7 @@
     --state-info: #00ffff;
 
     --selection: #ffff00;
+    --selection-hover: #ffff66;
     --selection-text: #000000;
 
     --divider: #ffffff;
@@ -311,11 +336,13 @@
 
     --panel: #16162a;
     --panel-header: #1e1e36;
+    --panel-header-text: #00ffff;
     --panel-border: #ff00ff40;
 
     --control: #2a2a4a;
     --control-hover: #3a3a5a;
     --control-active: #ff00ff;
+    --control-active-text: #000000;
     --control-disabled: #1a1a30;
     --control-border: #ff00ff30;
 
@@ -333,6 +360,7 @@
     --accent: #ff00ff;
     --accent-hover: #ff44ff;
     --accent-muted: #aa00aa;
+    --accent-text: #000000;
 
     --state-success: #00ff88;
     --state-warning: #ffff00;
@@ -340,6 +368,7 @@
     --state-info: #00ffff;
 
     --selection: #ff00ff;
+    --selection-hover: #ff44ff;
     --selection-text: #000000;
 
     --divider: #ff00ff30;
@@ -350,6 +379,10 @@
 
     --shadow-color: rgba(255, 0, 255, 0.2);
     --focus-ring: #00ffff;
+
+    /* Gradients */
+    --gradient-accent: linear-gradient(to right, #00ffff, #ff00ff);
+    --gradient-surface: linear-gradient(to bottom, #252542, #0f0f1a);
   }
 
   /* Synthwave - Retro 80s purple and pink */
@@ -361,11 +394,13 @@
 
     --panel: #181020;
     --panel-header: #201530;
+    --panel-header-text: #f8bbd0;
     --panel-border: #e040fb30;
 
     --control: #2a1a40;
     --control-hover: #3a2a50;
     --control-active: #e040fb;
+    --control-active-text: #000000;
     --control-disabled: #1a1028;
     --control-border: #9c27b030;
 
@@ -383,6 +418,7 @@
     --accent: #e040fb;
     --accent-hover: #ea80fc;
     --accent-muted: #9c27b0;
+    --accent-text: #000000;
 
     --state-success: #69f0ae;
     --state-warning: #ffd740;
@@ -390,6 +426,7 @@
     --state-info: #40c4ff;
 
     --selection: #e040fb;
+    --selection-hover: #ea80fc;
     --selection-text: #000000;
 
     --divider: #9c27b040;
@@ -411,11 +448,13 @@
 
     --panel: #21222c;
     --panel-header: #282a36;
+    --panel-header-text: #8be9fd;
     --panel-border: #44475a;
 
     --control: #44475a;
     --control-hover: #555866;
     --control-active: #bd93f9;
+    --control-active-text: #000000;
     --control-disabled: #333544;
     --control-border: #44475a;
 
@@ -433,6 +472,7 @@
     --accent: #bd93f9;
     --accent-hover: #caa8fa;
     --accent-muted: #9575cd;
+    --accent-text: #000000;
 
     --state-success: #50fa7b;
     --state-warning: #f1fa8c;
@@ -440,6 +480,7 @@
     --state-info: #8be9fd;
 
     --selection: #44475a;
+    --selection-hover: #555866;
     --selection-text: #f8f8f2;
 
     --divider: #44475a;
@@ -461,11 +502,13 @@
 
     --panel: #2e3440;
     --panel-header: #3b4252;
+    --panel-header-text: #d8dee9;
     --panel-border: #4c566a;
 
     --control: #4c566a;
     --control-hover: #5a657a;
     --control-active: #88c0d0;
+    --control-active-text: #000000;
     --control-disabled: #3b4252;
     --control-border: #4c566a;
 
@@ -483,6 +526,7 @@
     --accent: #88c0d0;
     --accent-hover: #8fbcbb;
     --accent-muted: #5e81ac;
+    --accent-text: #000000;
 
     --state-success: #a3be8c;
     --state-warning: #ebcb8b;
@@ -490,6 +534,7 @@
     --state-info: #81a1c1;
 
     --selection: #88c0d0;
+    --selection-hover: #8fbcbb;
     --selection-text: #2e3440;
 
     --divider: #4c566a;
@@ -511,11 +556,13 @@
 
     --panel: #dfc9a8;
     --panel-header: #d4bc98;
+    --panel-header-text: #5a4a38;
     --panel-border: #a08060;
 
     --control: #d4bc98;
     --control-hover: #c8b08a;
     --control-active: #7c5e3c;
+    --control-active-text: #ffffff;
     --control-disabled: #dfc9a8;
     --control-border: #a08060;
 
@@ -533,6 +580,7 @@
     --accent: #7c5e3c;
     --accent-hover: #8c6e4c;
     --accent-muted: #5c4028;
+    --accent-text: #ffffff;
 
     --state-success: #5a8a4a;
     --state-warning: #c88040;
@@ -540,6 +588,7 @@
     --state-info: #4080a0;
 
     --selection: #7c5e3c;
+    --selection-hover: #8c6e4c;
     --selection-text: #f0e2c8;
 
     --divider: #a08060;
@@ -561,11 +610,13 @@
 
     --panel: #241f1d;
     --panel-header: #2d2522;
+    --panel-header-text: #d0c4b8;
     --panel-border: #4a403a;
 
     --control: #4a403a;
     --control-hover: #5a504a;
     --control-active: #c9a86c;
+    --control-active-text: #000000;
     --control-disabled: #352e2a;
     --control-border: #4a403a;
 
@@ -583,6 +634,7 @@
     --accent: #c9a86c;
     --accent-hover: #d4b880;
     --accent-muted: #a08850;
+    --accent-text: #000000;
 
     --state-success: #8ab87a;
     --state-warning: #d4a84c;
@@ -590,6 +642,7 @@
     --state-info: #6494b8;
 
     --selection: #c9a86c;
+    --selection-hover: #d4b880;
     --selection-text: #1a1614;
 
     --divider: #4a403a;
@@ -611,11 +664,13 @@
 
     --panel: #221a2e;
     --panel-header: #2a1f35;
+    --panel-header-text: #fbbf24;
     --panel-border: #4a3858;
 
     --control: #4a3858;
     --control-hover: #5a4868;
     --control-active: #f97316;
+    --control-active-text: #000000;
     --control-disabled: #352a40;
     --control-border: #4a3858;
 
@@ -633,6 +688,7 @@
     --accent: #f97316;
     --accent-hover: #fb923c;
     --accent-muted: #c45e10;
+    --accent-text: #000000;
 
     --state-success: #84cc16;
     --state-warning: #fbbf24;
@@ -640,6 +696,7 @@
     --state-info: #a78bfa;
 
     --selection: #f97316;
+    --selection-hover: #fb923c;
     --selection-text: #1a1222;
 
     --divider: #4a3858;
@@ -661,11 +718,13 @@
 
     --panel: #142830;
     --panel-header: #1a3038;
+    --panel-header-text: #67e8f9;
     --panel-border: #305060;
 
     --control: #305060;
     --control-hover: #406070;
     --control-active: #22d3ee;
+    --control-active-text: #000000;
     --control-disabled: #203540;
     --control-border: #305060;
 
@@ -683,6 +742,7 @@
     --accent: #22d3ee;
     --accent-hover: #4de4f5;
     --accent-muted: #0891b2;
+    --accent-text: #000000;
 
     --state-success: #34d399;
     --state-warning: #fbbf24;
@@ -690,6 +750,7 @@
     --state-info: #38bdf8;
 
     --selection: #22d3ee;
+    --selection-hover: #4de4f5;
     --selection-text: #0c1820;
 
     --divider: #305060;
@@ -718,11 +779,13 @@
 
     --panel: #c0c0c0;
     --panel-header: #000080;
+    --panel-header-text: #ffffff;
     --panel-border: #000000;
 
     --control: #c0c0c0;
     --control-hover: #d4d4d4;
     --control-active: #000080;
+    --control-active-text: #ffffff;
     --control-disabled: #c0c0c0;
     --control-border: #000000;
 
@@ -740,6 +803,7 @@
     --accent: #000080;
     --accent-hover: #1084d0;
     --accent-muted: #000060;
+    --accent-text: #ffffff;
 
     --state-success: #008000;
     --state-warning: #808000;
@@ -747,6 +811,7 @@
     --state-info: #000080;
 
     --selection: #000080;
+    --selection-hover: #1084d0;
     --selection-text: #ffffff;
 
     --divider: #808080;
@@ -781,11 +846,13 @@
 
     --panel: #ece9d8;
     --panel-header: #0054e3;
+    --panel-header-text: #ffffff;
     --panel-border: #7a96df;
 
     --control: #ece9d8;
     --control-hover: #e0dfd0;
     --control-active: #316ac5;
+    --control-active-text: #ffffff;
     --control-disabled: #ece9d8;
     --control-border: #7f9db9;
 
@@ -803,6 +870,7 @@
     --accent: #316ac5;
     --accent-hover: #4a80d5;
     --accent-muted: #1e4a9d;
+    --accent-text: #ffffff;
 
     --state-success: #008000;
     --state-warning: #ff8c00;
@@ -810,6 +878,7 @@
     --state-info: #0054e3;
 
     --selection: #316ac5;
+    --selection-hover: #4a80d5;
     --selection-text: #ffffff;
 
     --divider: #d4d0c8;
@@ -838,11 +907,13 @@
 
     --panel: #dddddd;
     --panel-header: #cccccc;
+    --panel-header-text: #000000;
     --panel-border: #888888;
 
     --control: #dddddd;
     --control-hover: #e8e8e8;
     --control-active: #0066cc;
+    --control-active-text: #ffffff;
     --control-disabled: #dddddd;
     --control-border: #888888;
 
@@ -860,6 +931,7 @@
     --accent: #0066cc;
     --accent-hover: #0080ff;
     --accent-muted: #004d99;
+    --accent-text: #ffffff;
 
     --state-success: #008800;
     --state-warning: #ff9900;
@@ -867,6 +939,7 @@
     --state-info: #0066cc;
 
     --selection: #0066cc;
+    --selection-hover: #0080ff;
     --selection-text: #ffffff;
 
     --divider: #aaaaaa;

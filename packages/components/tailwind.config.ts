@@ -3,6 +3,12 @@ import type { Config } from 'tailwindcss';
 const config: Config = {
   content: ['./src/**/*.{js,ts,jsx,tsx}'],
   darkMode: ['class', '[data-theme="dark"]'],
+  safelist: [
+    'text-panel-header-text',
+    'bg-selection-hover',
+    'text-accent-text',
+    'text-control-active-text',
+  ],
   theme: {
     extend: {
       // Hyper-dense spacing scale (tighter than default)
@@ -53,11 +59,14 @@ const config: Config = {
           header: 'var(--panel-header)',
           border: 'var(--panel-border)',
         },
+        // Panel header text (separate for better Tailwind JIT support)
+        'panel-header-text': 'var(--panel-header-text)',
         // Control colors
         control: {
           DEFAULT: 'var(--control)',
           hover: 'var(--control-hover)',
           active: 'var(--control-active)',
+          'active-text': 'var(--control-active-text)',
           disabled: 'var(--control-disabled)',
           border: 'var(--control-border)',
         },
@@ -81,6 +90,7 @@ const config: Config = {
           DEFAULT: 'var(--accent)',
           hover: 'var(--accent-hover)',
           muted: 'var(--accent-muted)',
+          text: 'var(--accent-text)',
         },
         // State colors
         state: {
@@ -92,6 +102,7 @@ const config: Config = {
         // Selection
         selection: {
           DEFAULT: 'var(--selection)',
+          hover: 'var(--selection-hover)',
           text: 'var(--selection-text)',
         },
         // Dividers and separators
@@ -102,6 +113,11 @@ const config: Config = {
           muted: 'var(--icon-muted)',
           active: 'var(--icon-active)',
         },
+      },
+      // Gradients
+      backgroundImage: {
+        'gradient-accent': 'var(--gradient-accent)',
+        'gradient-surface': 'var(--gradient-surface)',
       },
       // Box shadows for depth
       boxShadow: {

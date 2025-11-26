@@ -105,18 +105,18 @@ const PanelHeader = React.forwardRef<HTMLDivElement, PanelHeaderProps>(
         ref={ref}
         className={cn(
           'flex items-center gap-1 h-6 px-2 bg-panel-header border-b border-panel-border',
-          'text-text-label text-xs font-medium select-none',
-          collapsible && 'cursor-pointer hover:bg-surface-raised',
+          'text-panel-header-text text-xs font-medium select-none',
+          collapsible && 'cursor-pointer hover:brightness-110',
           className
         )}
         {...props}
       >
         {collapsible && (
-          <span className="flex-shrink-0 text-icon-muted">
+          <span className="flex-shrink-0 opacity-70">
             {collapsed ? <ChevronRight size={12} /> : <ChevronDown size={12} />}
           </span>
         )}
-        {icon && <span className="flex-shrink-0 text-icon-muted">{icon}</span>}
+        {icon && <span className="flex-shrink-0 opacity-70">{icon}</span>}
         <span className="flex-1 truncate">{children}</span>
         {actions && (
           <div className="flex items-center gap-0.5" onClick={(e) => e.stopPropagation()}>

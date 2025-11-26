@@ -30,8 +30,8 @@ const Checkbox = React.forwardRef<
         'peer shrink-0 rounded-button border border-control-border bg-input',
         'focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent',
         'disabled:cursor-not-allowed disabled:opacity-50',
-        'data-[state=checked]:bg-accent data-[state=checked]:border-accent data-[state=checked]:text-text-inverse',
-        'data-[state=indeterminate]:bg-accent data-[state=indeterminate]:border-accent data-[state=indeterminate]:text-text-inverse',
+        'data-[state=checked]:bg-accent data-[state=checked]:border-accent data-[state=checked]:text-accent-text',
+        'data-[state=indeterminate]:bg-accent data-[state=indeterminate]:border-accent data-[state=indeterminate]:text-accent-text',
         'transition-colors duration-75',
         sizeClasses[size],
         className

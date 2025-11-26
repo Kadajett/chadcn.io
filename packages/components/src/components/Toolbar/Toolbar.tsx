@@ -76,7 +76,7 @@ const ToolbarButton = React.forwardRef<HTMLButtonElement, ToolbarButtonProps>(
           'hover:bg-control-hover hover:text-icon-active',
           'focus-visible:outline-1 focus-visible:outline-accent',
           'disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-transparent',
-          active && 'bg-control-active text-icon-active',
+          active && 'bg-control-active text-control-active-text',
           sizeClasses[size],
           iconSizeClasses[size],
           className
@@ -214,7 +214,7 @@ const ToolbarToggleItem = React.forwardRef<HTMLButtonElement, ToolbarToggleItemP
           'text-icon transition-colors duration-75',
           'hover:bg-control-hover hover:text-icon-active',
           'focus-visible:outline-1 focus-visible:outline-accent',
-          'data-[state=on]:bg-control-active data-[state=on]:text-icon-active',
+          'data-[state=on]:bg-control-active data-[state=on]:text-control-active-text',
           'disabled:opacity-50 disabled:cursor-not-allowed',
           sizeClasses[size],
           iconSizeClasses[size],

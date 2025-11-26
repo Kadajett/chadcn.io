@@ -15,9 +15,9 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default: 'bg-control border border-control-border text-text hover:bg-control-hover',
-        primary: 'bg-accent text-text-inverse hover:bg-accent-hover',
+        primary: 'bg-accent text-accent-text hover:bg-accent-hover',
         ghost: 'text-text hover:bg-control-hover',
-        destructive: 'bg-state-error text-text-inverse hover:opacity-90',
+        destructive: 'bg-state-error text-white hover:opacity-90',
         outline: 'border border-control-border bg-transparent text-text hover:bg-control-hover',
       },
       size: {

@@ -112,9 +112,10 @@ const TreeView = React.forwardRef<HTMLDivElement, TreeViewProps>(
             className={cn(
               'flex items-center h-6 pr-2 rounded-button cursor-pointer',
               'transition-colors duration-75',
-              'hover:bg-control-hover',
               'focus:outline-none focus-visible:ring-1 focus-visible:ring-accent',
-              isSelected && 'bg-selection text-selection-text',
+              isSelected
+                ? 'bg-selection text-selection-text hover:brightness-110'
+                : 'text-text hover:bg-control-hover',
               node.disabled && 'opacity-50 cursor-not-allowed'
             )}
             style={{ paddingLeft: depth * indentSize + 4 }}
@@ -130,8 +131,8 @@ const TreeView = React.forwardRef<HTMLDivElement, TreeViewProps>(
                 }}
                 className={cn(
                   'flex items-center justify-center w-4 h-4 mr-0.5',
-                  'text-icon-muted hover:text-icon',
-                  'focus:outline-none'
+                  'focus:outline-none',
+                  isSelected ? 'opacity-70' : 'text-icon-muted hover:text-icon'
                 )}
               >
                 {isExpanded ? <ChevronDown size={12} /> : <ChevronRight size={12} />}
@@ -142,7 +143,10 @@ const TreeView = React.forwardRef<HTMLDivElement, TreeViewProps>(
 
             {/* Icon */}
             {node.icon && (
-              <span className="flex items-center justify-center w-4 h-4 mr-1 text-icon">
+              <span className={cn(
+                'flex items-center justify-center w-4 h-4 mr-1',
+                isSelected ? 'opacity-80' : 'text-icon'
+              )}>
                 {node.icon}
               </span>
             )}

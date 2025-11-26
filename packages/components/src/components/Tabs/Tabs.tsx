@@ -55,7 +55,7 @@ const TabsTrigger = React.forwardRef<
 >(({ className, variant = 'default', size = 'default', ...props }, ref) => {
   const baseClasses = cn(
     'inline-flex items-center justify-center whitespace-nowrap',
-    'text-text-muted transition-colors duration-75',
+    'transition-colors duration-75',
     'focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent',
     'disabled:pointer-events-none disabled:opacity-50'
   );
@@ -63,17 +63,17 @@ const TabsTrigger = React.forwardRef<
   const variantClasses = {
     default: cn(
       'px-2 rounded-button',
-      'hover:text-text hover:bg-control-hover',
+      'text-panel-header-text/70 hover:text-panel-header-text hover:bg-white/10',
       'data-[state=active]:bg-control data-[state=active]:text-text'
     ),
     pills: cn(
       'px-2 rounded-control',
-      'hover:text-text hover:bg-control-hover',
-      'data-[state=active]:bg-accent data-[state=active]:text-text-inverse'
+      'text-text-muted hover:text-text hover:bg-control-hover',
+      'data-[state=active]:bg-accent data-[state=active]:text-accent-text'
     ),
     underline: cn(
       'px-3 border-b-2 border-transparent -mb-px',
-      'hover:text-text hover:border-control-hover',
+      'text-text-muted hover:text-text hover:border-control-hover',
       'data-[state=active]:text-text data-[state=active]:border-accent'
     ),
   };
