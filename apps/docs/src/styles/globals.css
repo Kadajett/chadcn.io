@@ -1,0 +1,117 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Import chadcn theme variables */
+@import '@chadcn/ui/themes.css';
+
+/* Documentation-specific styles */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  /* Code blocks */
+  .prose pre {
+    @apply bg-surface-sunken rounded-panel p-4 overflow-x-auto;
+  }
+
+  .prose code {
+    @apply bg-surface-sunken px-1.5 py-0.5 rounded text-accent font-mono text-sm;
+  }
+
+  .prose pre code {
+    @apply bg-transparent p-0;
+  }
+
+  /* Links */
+  .prose a {
+    @apply text-accent hover:text-accent-hover underline-offset-2;
+  }
+
+  /* Headings */
+  .prose h1,
+  .prose h2,
+  .prose h3,
+  .prose h4 {
+    @apply font-semibold text-text;
+  }
+
+  .prose h1 {
+    @apply text-3xl mb-4;
+  }
+
+  .prose h2 {
+    @apply text-2xl mt-8 mb-3;
+  }
+
+  .prose h3 {
+    @apply text-xl mt-6 mb-2;
+  }
+
+  /* Paragraphs */
+  .prose p {
+    @apply text-text-muted leading-relaxed mb-4;
+  }
+
+  /* Lists */
+  .prose ul,
+  .prose ol {
+    @apply text-text-muted pl-6 mb-4;
+  }
+
+  .prose li {
+    @apply mb-1;
+  }
+
+  /* Tables */
+  .prose table {
+    @apply w-full border-collapse mb-4;
+  }
+
+  .prose th {
+    @apply bg-surface-sunken text-text text-left p-2 border border-panel-border font-medium;
+  }
+
+  .prose td {
+    @apply p-2 border border-panel-border text-text-muted;
+  }
+
+  /* Component preview */
+  .component-preview {
+    @apply bg-surface rounded-panel p-6 border border-panel-border;
+  }
+
+  /* Code example */
+  .code-example {
+    @apply mt-4 rounded-panel overflow-hidden border border-panel-border;
+  }
+
+  .code-example-header {
+    @apply bg-panel-header px-4 py-2 text-xs text-panel-header-text border-b border-panel-border flex items-center justify-between;
+  }
+
+  .code-example-body {
+    @apply bg-surface-sunken p-4 overflow-x-auto;
+  }
+}
+
+/* Custom scrollbar for docs */
+.docs-sidebar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.docs-sidebar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.docs-sidebar::-webkit-scrollbar-thumb {
+  background: var(--control);
+  border-radius: 3px;
+}
+
+.docs-sidebar::-webkit-scrollbar-thumb:hover {
+  background: var(--control-hover);
+}

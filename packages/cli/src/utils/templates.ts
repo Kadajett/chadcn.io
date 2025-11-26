@@ -1,0 +1,1486 @@
+// Templates for chadcn CLI initialization
+
+export const UTILS_TEMPLATE = `import { clsx, type ClassValue } from 'clsx';
+import { twMerge } from 'tailwind-merge';
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs));
+}
+
+export type WithClassName<T = object> = T & { className?: string };
+`;
+
+export const UTILS_TEMPLATE_JS = `import { clsx } from 'clsx';
+import { twMerge } from 'tailwind-merge';
+
+export function cn(...inputs) {
+  return twMerge(clsx(inputs));
+}
+`;
+
+export const TAILWIND_CONFIG_TEMPLATE = `import type { Config } from 'tailwindcss';
+
+const config: Config = {
+  content: [
+    './src/**/*.{js,ts,jsx,tsx,mdx}',
+    './app/**/*.{js,ts,jsx,tsx,mdx}',
+    './pages/**/*.{js,ts,jsx,tsx,mdx}',
+    './components/**/*.{js,ts,jsx,tsx,mdx}',
+  ],
+  darkMode: ['class', '[data-theme]'],
+  theme: {
+    extend: {
+      // Hyper-dense spacing scale
+      spacing: {
+        '0.5': '2px',
+        '1': '4px',
+        '1.5': '6px',
+        '2': '8px',
+        '2.5': '10px',
+        '3': '12px',
+        '4': '16px',
+        '5': '20px',
+        '6': '24px',
+        '8': '32px',
+        'panel-sm': '200px',
+        'panel-md': '280px',
+        'panel-lg': '320px',
+        'toolbar': '28px',
+        'toolbar-lg': '36px',
+      },
+      // Compact font sizes for dense UIs
+      fontSize: {
+        '2xs': ['10px', { lineHeight: '12px' }],
+        'xs': ['11px', { lineHeight: '14px' }],
+        'sm': ['12px', { lineHeight: '16px' }],
+        'base': ['13px', { lineHeight: '18px' }],
+        'lg': ['14px', { lineHeight: '20px' }],
+      },
+      // Border radius for controls
+      borderRadius: {
+        'control': '3px',
+        'panel': '4px',
+        'button': '2px',
+      },
+      // CSS variable-based colors for theming
+      colors: {
+        surface: {
+          DEFAULT: 'var(--surface)',
+          raised: 'var(--surface-raised)',
+          sunken: 'var(--surface-sunken)',
+          overlay: 'var(--surface-overlay)',
+        },
+        panel: {
+          DEFAULT: 'var(--panel)',
+          header: 'var(--panel-header)',
+          border: 'var(--panel-border)',
+        },
+        'panel-header-text': 'var(--panel-header-text)',
+        control: {
+          DEFAULT: 'var(--control)',
+          hover: 'var(--control-hover)',
+          active: 'var(--control-active)',
+          'active-text': 'var(--control-active-text)',
+          disabled: 'var(--control-disabled)',
+          border: 'var(--control-border)',
+        },
+        input: {
+          DEFAULT: 'var(--input)',
+          hover: 'var(--input-hover)',
+          focus: 'var(--input-focus)',
+          border: 'var(--input-border)',
+        },
+        text: {
+          DEFAULT: 'var(--text)',
+          muted: 'var(--text-muted)',
+          disabled: 'var(--text-disabled)',
+          inverse: 'var(--text-inverse)',
+          label: 'var(--text-label)',
+        },
+        accent: {
+          DEFAULT: 'var(--accent)',
+          hover: 'var(--accent-hover)',
+          muted: 'var(--accent-muted)',
+          text: 'var(--accent-text)',
+        },
+        state: {
+          success: 'var(--state-success)',
+          warning: 'var(--state-warning)',
+          error: 'var(--state-error)',
+          info: 'var(--state-info)',
+        },
+        selection: {
+          DEFAULT: 'var(--selection)',
+          hover: 'var(--selection-hover)',
+          text: 'var(--selection-text)',
+        },
+        divider: 'var(--divider)',
+        icon: {
+          DEFAULT: 'var(--icon)',
+          muted: 'var(--icon-muted)',
+          active: 'var(--icon-active)',
+        },
+      },
+      backgroundImage: {
+        'gradient-accent': 'var(--gradient-accent)',
+        'gradient-surface': 'var(--gradient-surface)',
+      },
+      boxShadow: {
+        'control': '0 1px 2px var(--shadow-color)',
+        'control-inset': 'inset 0 1px 2px var(--shadow-color)',
+        'panel': '0 2px 8px var(--shadow-color)',
+        'dropdown': '0 4px 16px var(--shadow-color)',
+        'tooltip': '0 2px 4px var(--shadow-color)',
+      },
+      animation: {
+        'fade-in': 'fadeIn 150ms ease-out',
+        'fade-out': 'fadeOut 150ms ease-out',
+        'slide-down': 'slideDown 150ms ease-out',
+        'slide-up': 'slideUp 150ms ease-out',
+        'swipe-out': 'swipeOut 100ms ease-out',
+        'indeterminate': 'indeterminate 1.5s ease-in-out infinite',
+        'spin-slow': 'spin 2s linear infinite',
+      },
+      keyframes: {
+        fadeIn: {
+          '0%': { opacity: '0' },
+          '100%': { opacity: '1' },
+        },
+        fadeOut: {
+          '0%': { opacity: '1' },
+          '100%': { opacity: '0' },
+        },
+        slideDown: {
+          '0%': { opacity: '0', transform: 'translateY(-4px)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' },
+        },
+        slideUp: {
+          '0%': { opacity: '0', transform: 'translateY(4px)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' },
+        },
+        swipeOut: {
+          '0%': { transform: 'translateX(var(--radix-toast-swipe-end-x))' },
+          '100%': { transform: 'translateX(100%)' },
+        },
+        indeterminate: {
+          '0%': { transform: 'translateX(-100%)' },
+          '50%': { transform: 'translateX(200%)' },
+          '100%': { transform: 'translateX(-100%)' },
+        },
+      },
+      transitionDuration: {
+        '75': '75ms',
+        '100': '100ms',
+      },
+    },
+  },
+  plugins: [],
+};
+
+export default config;
+`;
+
+export const TAILWIND_CONFIG_TEMPLATE_JS = `/** @type {import('tailwindcss').Config} */
+module.exports = {
+  content: [
+    './src/**/*.{js,ts,jsx,tsx,mdx}',
+    './app/**/*.{js,ts,jsx,tsx,mdx}',
+    './pages/**/*.{js,ts,jsx,tsx,mdx}',
+    './components/**/*.{js,ts,jsx,tsx,mdx}',
+  ],
+  darkMode: ['class', '[data-theme]'],
+  theme: {
+    extend: {
+      spacing: {
+        '0.5': '2px',
+        '1': '4px',
+        '1.5': '6px',
+        '2': '8px',
+        '2.5': '10px',
+        '3': '12px',
+        '4': '16px',
+        '5': '20px',
+        '6': '24px',
+        '8': '32px',
+        'panel-sm': '200px',
+        'panel-md': '280px',
+        'panel-lg': '320px',
+        'toolbar': '28px',
+        'toolbar-lg': '36px',
+      },
+      fontSize: {
+        '2xs': ['10px', { lineHeight: '12px' }],
+        'xs': ['11px', { lineHeight: '14px' }],
+        'sm': ['12px', { lineHeight: '16px' }],
+        'base': ['13px', { lineHeight: '18px' }],
+        'lg': ['14px', { lineHeight: '20px' }],
+      },
+      borderRadius: {
+        'control': '3px',
+        'panel': '4px',
+        'button': '2px',
+      },
+      colors: {
+        surface: {
+          DEFAULT: 'var(--surface)',
+          raised: 'var(--surface-raised)',
+          sunken: 'var(--surface-sunken)',
+          overlay: 'var(--surface-overlay)',
+        },
+        panel: {
+          DEFAULT: 'var(--panel)',
+          header: 'var(--panel-header)',
+          border: 'var(--panel-border)',
+        },
+        'panel-header-text': 'var(--panel-header-text)',
+        control: {
+          DEFAULT: 'var(--control)',
+          hover: 'var(--control-hover)',
+          active: 'var(--control-active)',
+          'active-text': 'var(--control-active-text)',
+          disabled: 'var(--control-disabled)',
+          border: 'var(--control-border)',
+        },
+        input: {
+          DEFAULT: 'var(--input)',
+          hover: 'var(--input-hover)',
+          focus: 'var(--input-focus)',
+          border: 'var(--input-border)',
+        },
+        text: {
+          DEFAULT: 'var(--text)',
+          muted: 'var(--text-muted)',
+          disabled: 'var(--text-disabled)',
+          inverse: 'var(--text-inverse)',
+          label: 'var(--text-label)',
+        },
+        accent: {
+          DEFAULT: 'var(--accent)',
+          hover: 'var(--accent-hover)',
+          muted: 'var(--accent-muted)',
+          text: 'var(--accent-text)',
+        },
+        state: {
+          success: 'var(--state-success)',
+          warning: 'var(--state-warning)',
+          error: 'var(--state-error)',
+          info: 'var(--state-info)',
+        },
+        selection: {
+          DEFAULT: 'var(--selection)',
+          hover: 'var(--selection-hover)',
+          text: 'var(--selection-text)',
+        },
+        divider: 'var(--divider)',
+        icon: {
+          DEFAULT: 'var(--icon)',
+          muted: 'var(--icon-muted)',
+          active: 'var(--icon-active)',
+        },
+      },
+      backgroundImage: {
+        'gradient-accent': 'var(--gradient-accent)',
+        'gradient-surface': 'var(--gradient-surface)',
+      },
+      boxShadow: {
+        'control': '0 1px 2px var(--shadow-color)',
+        'control-inset': 'inset 0 1px 2px var(--shadow-color)',
+        'panel': '0 2px 8px var(--shadow-color)',
+        'dropdown': '0 4px 16px var(--shadow-color)',
+        'tooltip': '0 2px 4px var(--shadow-color)',
+      },
+      animation: {
+        'fade-in': 'fadeIn 150ms ease-out',
+        'fade-out': 'fadeOut 150ms ease-out',
+        'slide-down': 'slideDown 150ms ease-out',
+        'slide-up': 'slideUp 150ms ease-out',
+        'swipe-out': 'swipeOut 100ms ease-out',
+        'indeterminate': 'indeterminate 1.5s ease-in-out infinite',
+        'spin-slow': 'spin 2s linear infinite',
+      },
+      keyframes: {
+        fadeIn: {
+          '0%': { opacity: '0' },
+          '100%': { opacity: '1' },
+        },
+        fadeOut: {
+          '0%': { opacity: '1' },
+          '100%': { opacity: '0' },
+        },
+        slideDown: {
+          '0%': { opacity: '0', transform: 'translateY(-4px)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' },
+        },
+        slideUp: {
+          '0%': { opacity: '0', transform: 'translateY(4px)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' },
+        },
+        swipeOut: {
+          '0%': { transform: 'translateX(var(--radix-toast-swipe-end-x))' },
+          '100%': { transform: 'translateX(100%)' },
+        },
+        indeterminate: {
+          '0%': { transform: 'translateX(-100%)' },
+          '50%': { transform: 'translateX(200%)' },
+          '100%': { transform: 'translateX(-100%)' },
+        },
+      },
+      transitionDuration: {
+        '75': '75ms',
+        '100': '100ms',
+      },
+    },
+  },
+  plugins: [],
+};
+`;
+
+// Generate CSS based on selected themes
+export function generateCssContent(defaultTheme: string, includeAllThemes = true): string {
+  const themes = includeAllThemes ? ALL_THEMES_CSS : getThemeCss(defaultTheme);
+
+  return `@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================
+   CHADCN THEMING SYSTEM
+   Hyper-dense UI components for professional tools
+   ============================================ */
+
+@layer base {
+${themes}
+}
+
+/* ============================================
+   BASE STYLES
+   ============================================ */
+
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+    border-color: var(--panel-border);
+  }
+
+  html {
+    font-size: 13px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'SF Pro Text', system-ui, sans-serif;
+    background-color: var(--surface);
+    color: var(--text);
+    line-height: 1.4;
+  }
+
+  /* Dense UI scrollbars */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--surface-sunken);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--control);
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--control-hover);
+  }
+
+  /* Focus visible styles */
+  :focus-visible {
+    outline: 1px solid var(--focus-ring);
+    outline-offset: 1px;
+  }
+
+  /* Selection styles */
+  ::selection {
+    background-color: var(--selection);
+    color: var(--selection-text);
+  }
+}
+
+/* ============================================
+   COMPONENT UTILITIES
+   ============================================ */
+
+@layer components {
+  /* Panel base */
+  .panel {
+    @apply bg-panel border border-panel-border rounded-panel;
+  }
+
+  /* Control base */
+  .control {
+    @apply bg-control border border-control-border rounded-control
+           text-text text-sm h-6 px-2
+           transition-colors duration-75
+           hover:bg-control-hover
+           focus-visible:outline-1 focus-visible:outline-accent;
+  }
+
+  /* Input base */
+  .input-field {
+    @apply bg-input border border-input-border rounded-control
+           text-text text-sm h-6 px-2
+           transition-colors duration-75
+           hover:bg-input-hover
+           focus:bg-input-focus focus:border-accent focus:outline-none;
+  }
+
+  /* Label base */
+  .label {
+    @apply text-text-label text-xs font-normal select-none;
+  }
+
+  /* Toolbar item */
+  .toolbar-item {
+    @apply flex items-center justify-center
+           w-toolbar h-toolbar
+           text-icon hover:text-icon-active hover:bg-control-hover
+           rounded-button transition-colors duration-75;
+  }
+
+  .toolbar-item[data-active='true'],
+  .toolbar-item[aria-pressed='true'] {
+    @apply bg-control-active text-icon-active;
+  }
+
+  /* Divider */
+  .divider-h {
+    @apply h-px bg-divider;
+  }
+
+  .divider-v {
+    @apply w-px bg-divider self-stretch;
+  }
+}
+
+/* ============================================
+   ANIMATION UTILITIES
+   ============================================ */
+
+@layer utilities {
+  .animate-in {
+    animation: fadeIn 150ms ease-out;
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+`;
+}
+
+function getThemeCss(theme: string): string {
+  const themeVars = THEME_VARIABLES[theme] || THEME_VARIABLES['photoshop'];
+  return `  /* Default Theme: ${theme} */
+  :root,
+  [data-theme="${theme}"] {
+${themeVars}
+  }`;
+}
+
+// All theme CSS variables
+const ALL_THEMES_CSS = `  /* Default: Photoshop-inspired dark theme */
+  :root,
+  [data-theme="photoshop"] {
+    /* Surface colors */
+    --surface: #535353;
+    --surface-raised: #606060;
+    --surface-sunken: #3a3a3a;
+    --surface-overlay: #4a4a4a;
+
+    /* Panel colors */
+    --panel: #323232;
+    --panel-header: #3c3c3c;
+    --panel-header-text: #b0b0b0;
+    --panel-border: #1e1e1e;
+
+    /* Control colors */
+    --control: #4a4a4a;
+    --control-hover: #5a5a5a;
+    --control-active: #2680eb;
+    --control-active-text: #ffffff;
+    --control-disabled: #3a3a3a;
+    --control-border: #1e1e1e;
+
+    /* Input colors */
+    --input: #262626;
+    --input-hover: #2a2a2a;
+    --input-focus: #1e1e1e;
+    --input-border: #1a1a1a;
+
+    /* Text colors */
+    --text: #e0e0e0;
+    --text-muted: #999999;
+    --text-disabled: #666666;
+    --text-inverse: #1e1e1e;
+    --text-label: #b0b0b0;
+
+    /* Accent */
+    --accent: #2680eb;
+    --accent-hover: #3891ff;
+    --accent-muted: #1a5bb5;
+    --accent-text: #ffffff;
+
+    /* States */
+    --state-success: #2ecc71;
+    --state-warning: #f39c12;
+    --state-error: #e74c3c;
+    --state-info: #3498db;
+
+    /* Selection */
+    --selection: #2680eb;
+    --selection-hover: #3891ff;
+    --selection-text: #ffffff;
+
+    /* Dividers */
+    --divider: #1e1e1e;
+
+    /* Icons */
+    --icon: #b0b0b0;
+    --icon-muted: #777777;
+    --icon-active: #ffffff;
+
+    /* Shadows */
+    --shadow-color: rgba(0, 0, 0, 0.4);
+
+    /* Focus ring */
+    --focus-ring: #2680eb;
+
+    /* Gradients */
+    --gradient-accent: linear-gradient(to right, #1a5bb5, #3891ff);
+    --gradient-surface: linear-gradient(to bottom, #606060, #3a3a3a);
+  }
+
+  /* Blender-inspired theme */
+  [data-theme="blender"] {
+    --surface: #444444;
+    --surface-raised: #505050;
+    --surface-sunken: #282828;
+    --surface-overlay: #3a3a3a;
+
+    --panel: #282828;
+    --panel-header: #303030;
+    --panel-header-text: #a0a0a0;
+    --panel-border: #181818;
+
+    --control: #404040;
+    --control-hover: #4d4d4d;
+    --control-active: #5680c2;
+    --control-active-text: #ffffff;
+    --control-disabled: #333333;
+    --control-border: #181818;
+
+    --input: #1d1d1d;
+    --input-hover: #222222;
+    --input-focus: #181818;
+    --input-border: #141414;
+
+    --text: #e6e6e6;
+    --text-muted: #909090;
+    --text-disabled: #5a5a5a;
+    --text-inverse: #181818;
+    --text-label: #a0a0a0;
+
+    --accent: #5680c2;
+    --accent-hover: #6890d2;
+    --accent-muted: #3d5a8a;
+    --accent-text: #ffffff;
+
+    --divider: #181818;
+
+    --icon: #a0a0a0;
+    --icon-muted: #666666;
+    --icon-active: #ffffff;
+
+    --shadow-color: rgba(0, 0, 0, 0.5);
+    --focus-ring: #5680c2;
+  }
+
+  /* GIMP-inspired theme */
+  [data-theme="gimp"] {
+    --surface: #4b4b4b;
+    --surface-raised: #5a5a5a;
+    --surface-sunken: #333333;
+    --surface-overlay: #454545;
+
+    --panel: #353535;
+    --panel-header: #404040;
+    --panel-header-text: #aaaaaa;
+    --panel-border: #252525;
+
+    --control: #474747;
+    --control-hover: #555555;
+    --control-active: #8ab4f8;
+    --control-active-text: #000000;
+    --control-disabled: #3a3a3a;
+    --control-border: #252525;
+
+    --input: #292929;
+    --input-hover: #2e2e2e;
+    --input-focus: #252525;
+    --input-border: #1f1f1f;
+
+    --text: #dcdcdc;
+    --text-muted: #959595;
+    --text-disabled: #606060;
+    --text-inverse: #202020;
+    --text-label: #aaaaaa;
+
+    --accent: #8ab4f8;
+    --accent-hover: #a0c4ff;
+    --accent-muted: #5a84c8;
+    --accent-text: #000000;
+
+    --divider: #252525;
+
+    --icon: #a8a8a8;
+    --icon-muted: #6a6a6a;
+    --icon-active: #ffffff;
+
+    --shadow-color: rgba(0, 0, 0, 0.45);
+    --focus-ring: #8ab4f8;
+  }
+
+  /* VS Code-inspired theme */
+  [data-theme="vscode"] {
+    --surface: #3c3c3c;
+    --surface-raised: #454545;
+    --surface-sunken: #252526;
+    --surface-overlay: #383838;
+
+    --panel: #252526;
+    --panel-header: #2d2d2d;
+    --panel-header-text: #9d9d9d;
+    --panel-border: #1e1e1e;
+
+    --control: #333333;
+    --control-hover: #404040;
+    --control-active: #0078d4;
+    --control-active-text: #ffffff;
+    --control-disabled: #2a2a2a;
+    --control-border: #1e1e1e;
+
+    --input: #1e1e1e;
+    --input-hover: #252526;
+    --input-focus: #1a1a1a;
+    --input-border: #3c3c3c;
+
+    --text: #cccccc;
+    --text-muted: #858585;
+    --text-disabled: #5a5a5a;
+    --text-inverse: #1e1e1e;
+    --text-label: #9d9d9d;
+
+    --accent: #0078d4;
+    --accent-hover: #1a8fe3;
+    --accent-muted: #005a9e;
+    --accent-text: #ffffff;
+
+    --divider: #2d2d2d;
+
+    --icon: #8a8a8a;
+    --icon-muted: #5a5a5a;
+    --icon-active: #ffffff;
+
+    --shadow-color: rgba(0, 0, 0, 0.35);
+    --focus-ring: #0078d4;
+  }
+
+  /* Light theme */
+  [data-theme="light"] {
+    --surface: #e8e8e8;
+    --surface-raised: #f5f5f5;
+    --surface-sunken: #d8d8d8;
+    --surface-overlay: #f0f0f0;
+
+    --panel: #f0f0f0;
+    --panel-header: #e0e0e0;
+    --panel-header-text: #555555;
+    --panel-border: #c0c0c0;
+
+    --control: #e0e0e0;
+    --control-hover: #d0d0d0;
+    --control-active: #0066cc;
+    --control-active-text: #ffffff;
+    --control-disabled: #e8e8e8;
+    --control-border: #b0b0b0;
+
+    --input: #ffffff;
+    --input-hover: #fafafa;
+    --input-focus: #ffffff;
+    --input-border: #c0c0c0;
+
+    --text: #333333;
+    --text-muted: #666666;
+    --text-disabled: #999999;
+    --text-inverse: #ffffff;
+    --text-label: #555555;
+
+    --accent: #0066cc;
+    --accent-hover: #0077ee;
+    --accent-muted: #004999;
+    --accent-text: #ffffff;
+
+    --state-success: #28a745;
+    --state-warning: #ffc107;
+    --state-error: #dc3545;
+    --state-info: #17a2b8;
+
+    --selection: #0066cc;
+    --selection-hover: #0077ee;
+    --selection-text: #ffffff;
+
+    --divider: #c0c0c0;
+
+    --icon: #555555;
+    --icon-muted: #888888;
+    --icon-active: #333333;
+
+    --shadow-color: rgba(0, 0, 0, 0.15);
+    --focus-ring: #0066cc;
+  }
+
+  /* High contrast theme */
+  [data-theme="high-contrast"] {
+    --surface: #000000;
+    --surface-raised: #1a1a1a;
+    --surface-sunken: #000000;
+    --surface-overlay: #0d0d0d;
+
+    --panel: #000000;
+    --panel-header: #1a1a1a;
+    --panel-header-text: #ffffff;
+    --panel-border: #ffffff;
+
+    --control: #000000;
+    --control-hover: #1a1a1a;
+    --control-active: #ffff00;
+    --control-active-text: #000000;
+    --control-disabled: #1a1a1a;
+    --control-border: #ffffff;
+
+    --input: #000000;
+    --input-hover: #0d0d0d;
+    --input-focus: #000000;
+    --input-border: #ffffff;
+
+    --text: #ffffff;
+    --text-muted: #e0e0e0;
+    --text-disabled: #808080;
+    --text-inverse: #000000;
+    --text-label: #ffffff;
+
+    --accent: #ffff00;
+    --accent-hover: #ffff66;
+    --accent-muted: #cccc00;
+    --accent-text: #000000;
+
+    --state-success: #00ff00;
+    --state-warning: #ffff00;
+    --state-error: #ff0000;
+    --state-info: #00ffff;
+
+    --selection: #ffff00;
+    --selection-hover: #ffff66;
+    --selection-text: #000000;
+
+    --divider: #ffffff;
+
+    --icon: #ffffff;
+    --icon-muted: #c0c0c0;
+    --icon-active: #ffff00;
+
+    --shadow-color: rgba(255, 255, 255, 0.1);
+    --focus-ring: #ffff00;
+  }
+
+  /* Cyberpunk theme */
+  [data-theme="cyberpunk"] {
+    --surface: #1a1a2e;
+    --surface-raised: #252542;
+    --surface-sunken: #0f0f1a;
+    --surface-overlay: #1f1f35;
+
+    --panel: #16162a;
+    --panel-header: #1e1e36;
+    --panel-header-text: #00ffff;
+    --panel-border: #ff00ff40;
+
+    --control: #2a2a4a;
+    --control-hover: #3a3a5a;
+    --control-active: #ff00ff;
+    --control-active-text: #000000;
+    --control-disabled: #1a1a30;
+    --control-border: #ff00ff30;
+
+    --input: #0a0a15;
+    --input-hover: #12122a;
+    --input-focus: #0a0a15;
+    --input-border: #00ffff40;
+
+    --text: #e0e0ff;
+    --text-muted: #9090b0;
+    --text-disabled: #505070;
+    --text-inverse: #0a0a15;
+    --text-label: #00ffff;
+
+    --accent: #ff00ff;
+    --accent-hover: #ff44ff;
+    --accent-muted: #aa00aa;
+    --accent-text: #000000;
+
+    --state-success: #00ff88;
+    --state-warning: #ffff00;
+    --state-error: #ff0044;
+    --state-info: #00ffff;
+
+    --selection: #ff00ff;
+    --selection-hover: #ff44ff;
+    --selection-text: #000000;
+
+    --divider: #ff00ff30;
+
+    --icon: #00ffff;
+    --icon-muted: #0088aa;
+    --icon-active: #ff00ff;
+
+    --shadow-color: rgba(255, 0, 255, 0.2);
+    --focus-ring: #00ffff;
+
+    --gradient-accent: linear-gradient(to right, #00ffff, #ff00ff);
+    --gradient-surface: linear-gradient(to bottom, #252542, #0f0f1a);
+  }
+
+  /* Synthwave theme */
+  [data-theme="synthwave"] {
+    --surface: #1a1025;
+    --surface-raised: #2a1a3a;
+    --surface-sunken: #100818;
+    --surface-overlay: #221530;
+
+    --panel: #181020;
+    --panel-header: #201530;
+    --panel-header-text: #f8bbd0;
+    --panel-border: #e040fb30;
+
+    --control: #2a1a40;
+    --control-hover: #3a2a50;
+    --control-active: #e040fb;
+    --control-active-text: #000000;
+    --control-disabled: #1a1028;
+    --control-border: #9c27b030;
+
+    --input: #0d0810;
+    --input-hover: #150d1a;
+    --input-focus: #0d0810;
+    --input-border: #e040fb40;
+
+    --text: #f8e0ff;
+    --text-muted: #b090c0;
+    --text-disabled: #604070;
+    --text-inverse: #100818;
+    --text-label: #f8bbd0;
+
+    --accent: #e040fb;
+    --accent-hover: #ea80fc;
+    --accent-muted: #9c27b0;
+    --accent-text: #000000;
+
+    --state-success: #69f0ae;
+    --state-warning: #ffd740;
+    --state-error: #ff5252;
+    --state-info: #40c4ff;
+
+    --selection: #e040fb;
+    --selection-hover: #ea80fc;
+    --selection-text: #000000;
+
+    --divider: #9c27b040;
+
+    --icon: #f8bbd0;
+    --icon-muted: #9c6090;
+    --icon-active: #e040fb;
+
+    --shadow-color: rgba(224, 64, 251, 0.2);
+    --focus-ring: #e040fb;
+  }
+
+  /* Dracula theme */
+  [data-theme="dracula"] {
+    --surface: #282a36;
+    --surface-raised: #343746;
+    --surface-sunken: #1e1f29;
+    --surface-overlay: #2e303e;
+
+    --panel: #21222c;
+    --panel-header: #282a36;
+    --panel-header-text: #8be9fd;
+    --panel-border: #44475a;
+
+    --control: #44475a;
+    --control-hover: #555866;
+    --control-active: #bd93f9;
+    --control-active-text: #000000;
+    --control-disabled: #333544;
+    --control-border: #44475a;
+
+    --input: #1e1f29;
+    --input-hover: #252630;
+    --input-focus: #1e1f29;
+    --input-border: #44475a;
+
+    --text: #f8f8f2;
+    --text-muted: #9090a0;
+    --text-disabled: #6272a4;
+    --text-inverse: #1e1f29;
+    --text-label: #8be9fd;
+
+    --accent: #bd93f9;
+    --accent-hover: #caa8fa;
+    --accent-muted: #9575cd;
+    --accent-text: #000000;
+
+    --state-success: #50fa7b;
+    --state-warning: #f1fa8c;
+    --state-error: #ff5555;
+    --state-info: #8be9fd;
+
+    --selection: #44475a;
+    --selection-hover: #555866;
+    --selection-text: #f8f8f2;
+
+    --divider: #44475a;
+
+    --icon: #f8f8f2;
+    --icon-muted: #6272a4;
+    --icon-active: #bd93f9;
+
+    --shadow-color: rgba(0, 0, 0, 0.4);
+    --focus-ring: #bd93f9;
+  }
+
+  /* Nord theme */
+  [data-theme="nord"] {
+    --surface: #3b4252;
+    --surface-raised: #434c5e;
+    --surface-sunken: #2e3440;
+    --surface-overlay: #3b4252;
+
+    --panel: #2e3440;
+    --panel-header: #3b4252;
+    --panel-header-text: #d8dee9;
+    --panel-border: #4c566a;
+
+    --control: #4c566a;
+    --control-hover: #5a657a;
+    --control-active: #88c0d0;
+    --control-active-text: #000000;
+    --control-disabled: #3b4252;
+    --control-border: #4c566a;
+
+    --input: #2e3440;
+    --input-hover: #3b4252;
+    --input-focus: #2e3440;
+    --input-border: #4c566a;
+
+    --text: #eceff4;
+    --text-muted: #a0a8b8;
+    --text-disabled: #616e88;
+    --text-inverse: #2e3440;
+    --text-label: #d8dee9;
+
+    --accent: #88c0d0;
+    --accent-hover: #8fbcbb;
+    --accent-muted: #5e81ac;
+    --accent-text: #000000;
+
+    --state-success: #a3be8c;
+    --state-warning: #ebcb8b;
+    --state-error: #bf616a;
+    --state-info: #81a1c1;
+
+    --selection: #88c0d0;
+    --selection-hover: #8fbcbb;
+    --selection-text: #2e3440;
+
+    --divider: #4c566a;
+
+    --icon: #d8dee9;
+    --icon-muted: #616e88;
+    --icon-active: #88c0d0;
+
+    --shadow-color: rgba(0, 0, 0, 0.3);
+    --focus-ring: #88c0d0;
+  }
+
+  /* Retro theme */
+  [data-theme="retro"] {
+    --surface: #e8d5b5;
+    --surface-raised: #f0e2c8;
+    --surface-sunken: #d8c5a5;
+    --surface-overlay: #ecdcc0;
+
+    --panel: #dfc9a8;
+    --panel-header: #d4bc98;
+    --panel-header-text: #5a4a38;
+    --panel-border: #a08060;
+
+    --control: #d4bc98;
+    --control-hover: #c8b08a;
+    --control-active: #7c5e3c;
+    --control-active-text: #ffffff;
+    --control-disabled: #dfc9a8;
+    --control-border: #a08060;
+
+    --input: #f5ead8;
+    --input-hover: #f0e5d0;
+    --input-focus: #f5ead8;
+    --input-border: #a08060;
+
+    --text: #4a3c2c;
+    --text-muted: #7a6a58;
+    --text-disabled: #a09080;
+    --text-inverse: #f0e2c8;
+    --text-label: #5a4a38;
+
+    --accent: #7c5e3c;
+    --accent-hover: #8c6e4c;
+    --accent-muted: #5c4028;
+    --accent-text: #ffffff;
+
+    --state-success: #5a8a4a;
+    --state-warning: #c88040;
+    --state-error: #b84040;
+    --state-info: #4080a0;
+
+    --selection: #7c5e3c;
+    --selection-hover: #8c6e4c;
+    --selection-text: #f0e2c8;
+
+    --divider: #a08060;
+
+    --icon: #5a4a38;
+    --icon-muted: #907860;
+    --icon-active: #4a3c2c;
+
+    --shadow-color: rgba(74, 60, 44, 0.2);
+    --focus-ring: #7c5e3c;
+  }
+
+  /* Coffee theme */
+  [data-theme="coffee"] {
+    --surface: #2d2522;
+    --surface-raised: #3a3230;
+    --surface-sunken: #1f1a18;
+    --surface-overlay: #332c2a;
+
+    --panel: #241f1d;
+    --panel-header: #2d2522;
+    --panel-header-text: #d0c4b8;
+    --panel-border: #4a403a;
+
+    --control: #4a403a;
+    --control-hover: #5a504a;
+    --control-active: #c9a86c;
+    --control-active-text: #000000;
+    --control-disabled: #352e2a;
+    --control-border: #4a403a;
+
+    --input: #1a1614;
+    --input-hover: #221d1a;
+    --input-focus: #1a1614;
+    --input-border: #4a403a;
+
+    --text: #e8e0d8;
+    --text-muted: #a09890;
+    --text-disabled: #686058;
+    --text-inverse: #1a1614;
+    --text-label: #d0c4b8;
+
+    --accent: #c9a86c;
+    --accent-hover: #d4b880;
+    --accent-muted: #a08850;
+    --accent-text: #000000;
+
+    --state-success: #8ab87a;
+    --state-warning: #d4a84c;
+    --state-error: #c86464;
+    --state-info: #6494b8;
+
+    --selection: #c9a86c;
+    --selection-hover: #d4b880;
+    --selection-text: #1a1614;
+
+    --divider: #4a403a;
+
+    --icon: #d0c4b8;
+    --icon-muted: #807068;
+    --icon-active: #c9a86c;
+
+    --shadow-color: rgba(0, 0, 0, 0.4);
+    --focus-ring: #c9a86c;
+  }
+
+  /* Sunset theme */
+  [data-theme="sunset"] {
+    --surface: #2a1f35;
+    --surface-raised: #382a44;
+    --surface-sunken: #1e1528;
+    --surface-overlay: #30253c;
+
+    --panel: #221a2e;
+    --panel-header: #2a1f35;
+    --panel-header-text: #fbbf24;
+    --panel-border: #4a3858;
+
+    --control: #4a3858;
+    --control-hover: #5a4868;
+    --control-active: #f97316;
+    --control-active-text: #000000;
+    --control-disabled: #352a40;
+    --control-border: #4a3858;
+
+    --input: #1a1222;
+    --input-hover: #221a2e;
+    --input-focus: #1a1222;
+    --input-border: #4a3858;
+
+    --text: #f8e8f0;
+    --text-muted: #a898b0;
+    --text-disabled: #685878;
+    --text-inverse: #1a1222;
+    --text-label: #fbbf24;
+
+    --accent: #f97316;
+    --accent-hover: #fb923c;
+    --accent-muted: #c45e10;
+    --accent-text: #000000;
+
+    --state-success: #84cc16;
+    --state-warning: #fbbf24;
+    --state-error: #ef4444;
+    --state-info: #a78bfa;
+
+    --selection: #f97316;
+    --selection-hover: #fb923c;
+    --selection-text: #1a1222;
+
+    --divider: #4a3858;
+
+    --icon: #fbbf24;
+    --icon-muted: #a07830;
+    --icon-active: #f97316;
+
+    --shadow-color: rgba(249, 115, 22, 0.2);
+    --focus-ring: #f97316;
+  }
+
+  /* Aqua theme */
+  [data-theme="aqua"] {
+    --surface: #1a3038;
+    --surface-raised: #254048;
+    --surface-sunken: #102028;
+    --surface-overlay: #203840;
+
+    --panel: #142830;
+    --panel-header: #1a3038;
+    --panel-header-text: #67e8f9;
+    --panel-border: #305060;
+
+    --control: #305060;
+    --control-hover: #406070;
+    --control-active: #22d3ee;
+    --control-active-text: #000000;
+    --control-disabled: #203540;
+    --control-border: #305060;
+
+    --input: #0c1820;
+    --input-hover: #142028;
+    --input-focus: #0c1820;
+    --input-border: #305060;
+
+    --text: #e0f8ff;
+    --text-muted: #88b8c8;
+    --text-disabled: #507080;
+    --text-inverse: #0c1820;
+    --text-label: #67e8f9;
+
+    --accent: #22d3ee;
+    --accent-hover: #4de4f5;
+    --accent-muted: #0891b2;
+    --accent-text: #000000;
+
+    --state-success: #34d399;
+    --state-warning: #fbbf24;
+    --state-error: #f87171;
+    --state-info: #38bdf8;
+
+    --selection: #22d3ee;
+    --selection-hover: #4de4f5;
+    --selection-text: #0c1820;
+
+    --divider: #305060;
+
+    --icon: #67e8f9;
+    --icon-muted: #408090;
+    --icon-active: #22d3ee;
+
+    --shadow-color: rgba(34, 211, 238, 0.15);
+    --focus-ring: #22d3ee;
+  }
+
+  /* Windows 95/98 theme */
+  [data-theme="win95"],
+  [data-theme="windows95"] {
+    --surface: #c0c0c0;
+    --surface-raised: #dfdfdf;
+    --surface-sunken: #808080;
+    --surface-overlay: #c0c0c0;
+
+    --panel: #c0c0c0;
+    --panel-header: #000080;
+    --panel-header-text: #ffffff;
+    --panel-border: #000000;
+
+    --control: #c0c0c0;
+    --control-hover: #d4d4d4;
+    --control-active: #000080;
+    --control-active-text: #ffffff;
+    --control-disabled: #c0c0c0;
+    --control-border: #000000;
+
+    --input: #ffffff;
+    --input-hover: #ffffff;
+    --input-focus: #ffffff;
+    --input-border: #808080;
+
+    --text: #000000;
+    --text-muted: #404040;
+    --text-disabled: #808080;
+    --text-inverse: #ffffff;
+    --text-label: #000000;
+
+    --accent: #000080;
+    --accent-hover: #1084d0;
+    --accent-muted: #000060;
+    --accent-text: #ffffff;
+
+    --state-success: #008000;
+    --state-warning: #808000;
+    --state-error: #800000;
+    --state-info: #000080;
+
+    --selection: #000080;
+    --selection-hover: #1084d0;
+    --selection-text: #ffffff;
+
+    --divider: #808080;
+
+    --icon: #000000;
+    --icon-muted: #808080;
+    --icon-active: #000080;
+
+    --shadow-color: rgba(0, 0, 0, 0.3);
+    --focus-ring: #000000;
+  }
+
+  /* Windows XP Luna theme */
+  [data-theme="winxp"],
+  [data-theme="windowsxp"] {
+    --surface: #ece9d8;
+    --surface-raised: #f5f4ea;
+    --surface-sunken: #d4d0c8;
+    --surface-overlay: #f0efe4;
+
+    --panel: #ece9d8;
+    --panel-header: #0054e3;
+    --panel-header-text: #ffffff;
+    --panel-border: #7a96df;
+
+    --control: #ece9d8;
+    --control-hover: #e0dfd0;
+    --control-active: #316ac5;
+    --control-active-text: #ffffff;
+    --control-disabled: #ece9d8;
+    --control-border: #7f9db9;
+
+    --input: #ffffff;
+    --input-hover: #ffffff;
+    --input-focus: #ffffff;
+    --input-border: #7f9db9;
+
+    --text: #000000;
+    --text-muted: #404040;
+    --text-disabled: #a0a0a0;
+    --text-inverse: #ffffff;
+    --text-label: #003399;
+
+    --accent: #316ac5;
+    --accent-hover: #4a80d5;
+    --accent-muted: #1e4a9d;
+    --accent-text: #ffffff;
+
+    --state-success: #008000;
+    --state-warning: #ff8c00;
+    --state-error: #cc0000;
+    --state-info: #0054e3;
+
+    --selection: #316ac5;
+    --selection-hover: #4a80d5;
+    --selection-text: #ffffff;
+
+    --divider: #d4d0c8;
+
+    --icon: #000000;
+    --icon-muted: #808080;
+    --icon-active: #316ac5;
+
+    --shadow-color: rgba(0, 0, 0, 0.2);
+    --focus-ring: #316ac5;
+  }
+
+  /* Mac OS 9 Platinum theme */
+  [data-theme="macos9"],
+  [data-theme="mac-classic"] {
+    --surface: #dddddd;
+    --surface-raised: #eeeeee;
+    --surface-sunken: #bbbbbb;
+    --surface-overlay: #e5e5e5;
+
+    --panel: #dddddd;
+    --panel-header: #cccccc;
+    --panel-header-text: #000000;
+    --panel-border: #888888;
+
+    --control: #dddddd;
+    --control-hover: #e8e8e8;
+    --control-active: #0066cc;
+    --control-active-text: #ffffff;
+    --control-disabled: #dddddd;
+    --control-border: #888888;
+
+    --input: #ffffff;
+    --input-hover: #ffffff;
+    --input-focus: #ffffff;
+    --input-border: #888888;
+
+    --text: #000000;
+    --text-muted: #444444;
+    --text-disabled: #888888;
+    --text-inverse: #ffffff;
+    --text-label: #000000;
+
+    --accent: #0066cc;
+    --accent-hover: #0080ff;
+    --accent-muted: #004d99;
+    --accent-text: #ffffff;
+
+    --state-success: #008800;
+    --state-warning: #ff9900;
+    --state-error: #cc0000;
+    --state-info: #0066cc;
+
+    --selection: #0066cc;
+    --selection-hover: #0080ff;
+    --selection-text: #ffffff;
+
+    --divider: #aaaaaa;
+
+    --icon: #333333;
+    --icon-muted: #888888;
+    --icon-active: #0066cc;
+
+    --shadow-color: rgba(0, 0, 0, 0.15);
+    --focus-ring: #0066cc;
+  }`;
+
+// Individual theme variables for single-theme generation
+const THEME_VARIABLES: Record<string, string> = {
+  photoshop: `    /* Surface colors */
+    --surface: #535353;
+    --surface-raised: #606060;
+    --surface-sunken: #3a3a3a;
+    --surface-overlay: #4a4a4a;
+
+    /* Panel colors */
+    --panel: #323232;
+    --panel-header: #3c3c3c;
+    --panel-header-text: #b0b0b0;
+    --panel-border: #1e1e1e;
+
+    /* Control colors */
+    --control: #4a4a4a;
+    --control-hover: #5a5a5a;
+    --control-active: #2680eb;
+    --control-active-text: #ffffff;
+    --control-disabled: #3a3a3a;
+    --control-border: #1e1e1e;
+
+    /* Input colors */
+    --input: #262626;
+    --input-hover: #2a2a2a;
+    --input-focus: #1e1e1e;
+    --input-border: #1a1a1a;
+
+    /* Text colors */
+    --text: #e0e0e0;
+    --text-muted: #999999;
+    --text-disabled: #666666;
+    --text-inverse: #1e1e1e;
+    --text-label: #b0b0b0;
+
+    /* Accent */
+    --accent: #2680eb;
+    --accent-hover: #3891ff;
+    --accent-muted: #1a5bb5;
+    --accent-text: #ffffff;
+
+    /* States */
+    --state-success: #2ecc71;
+    --state-warning: #f39c12;
+    --state-error: #e74c3c;
+    --state-info: #3498db;
+
+    /* Selection */
+    --selection: #2680eb;
+    --selection-hover: #3891ff;
+    --selection-text: #ffffff;
+
+    /* Dividers */
+    --divider: #1e1e1e;
+
+    /* Icons */
+    --icon: #b0b0b0;
+    --icon-muted: #777777;
+    --icon-active: #ffffff;
+
+    /* Shadows */
+    --shadow-color: rgba(0, 0, 0, 0.4);
+
+    /* Focus ring */
+    --focus-ring: #2680eb;
+
+    /* Gradients */
+    --gradient-accent: linear-gradient(to right, #1a5bb5, #3891ff);
+    --gradient-surface: linear-gradient(to bottom, #606060, #3a3a3a);`,
+};
+
+// Component templates - empty for now, will be populated by build or fetched from registry
+export const TEMPLATES: Record<string, Record<string, string>> = {};

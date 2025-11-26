@@ -24,6 +24,7 @@
       "import": "./dist/index.js"
     },
     "./styles.css": "./dist/styles.css",
+    "./themes.css": "./src/styles/themes.css",
     "./themes/*": "./dist/themes/*"
   },
   "main": "./dist/index.js",
