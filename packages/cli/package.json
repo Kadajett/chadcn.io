@@ -1,7 +1,7 @@
 {
-  "name": "chadcn",
+  "name": "chadchin-ui",
   "version": "0.0.1",
-  "description": "CLI for adding chadcn components to your project",
+  "description": "CLI for adding chadchin hyper-dense UI components to your project",
   "keywords": [
     "cli",
     "react",
@@ -27,7 +27,8 @@
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "bin": {
-    "chadcn": "./dist/index.js"
+    "chadchin-ui": "./dist/index.js",
+    "chadchin": "./dist/index.js"
   },
   "files": [
     "dist"

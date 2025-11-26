@@ -20,8 +20,12 @@ const configSchema = z.object({
 
 export type Config = z.infer<typeof configSchema>;
 
-const explorer = cosmiconfig('chadcn', {
+const explorer = cosmiconfig('chadchin', {
   searchPlaces: [
+    'chadchin.json',
+    '.chadchinrc',
+    '.chadchinrc.json',
+    // Also support legacy chadcn config files
     'chadcn.json',
     '.chadcnrc',
     '.chadcnrc.json',

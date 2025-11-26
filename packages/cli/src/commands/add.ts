@@ -27,8 +27,8 @@ export async function add(components: string[], options: AddOptions) {
   // Check for config
   const config = await getConfig(cwd);
   if (!config) {
-    console.log(chalk.red('Error:'), 'chadcn is not initialized.');
-    console.log('Run', chalk.cyan('npx chadcn init'), 'to get started.');
+    console.log(chalk.red('Error:'), 'chadchin is not initialized.');
+    console.log('Run', chalk.cyan('npx chadchin init'), 'to get started.');
     process.exit(1);
   }
 

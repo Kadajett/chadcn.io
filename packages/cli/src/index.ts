@@ -6,13 +6,13 @@ import { diff } from './commands/diff.js';
 const program = new Command();
 
 program
-  .name('chadcn')
-  .description('CLI for adding chadcn hyper-dense UI components to your project')
+  .name('chadchin')
+  .description('CLI for adding chadchin hyper-dense UI components to your project')
   .version('0.0.1');
 
 program
   .command('init')
-  .description('Initialize chadcn in your project')
+  .description('Initialize chadchin in your project')
   .option('-y, --yes', 'Skip confirmation prompts')
   .option('-d, --defaults', 'Use default configuration')
   .option('-t, --theme <theme>', 'Set default theme (photoshop, blender, gimp, vscode, light)', 'photoshop')

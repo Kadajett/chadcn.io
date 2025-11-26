@@ -24,14 +24,14 @@ export async function init(options: InitOptions) {
   const cwd = path.resolve(options.cwd);
 
   console.log();
-  console.log(chalk.bold.cyan('     ██████╗██╗  ██╗ █████╗ ██████╗  ██████╗███╗   ██╗'));
-  console.log(chalk.bold.cyan('    ██╔════╝██║  ██║██╔══██╗██╔══██╗██╔════╝████╗  ██║'));
-  console.log(chalk.bold.cyan('    ██║     ███████║███████║██║  ██║██║     ██╔██╗ ██║'));
-  console.log(chalk.bold.cyan('    ██║     ██╔══██║██╔══██║██║  ██║██║     ██║╚██╗██║'));
-  console.log(chalk.bold.cyan('    ╚██████╗██║  ██║██║  ██║██████╔╝╚██████╗██║ ╚████║'));
-  console.log(chalk.bold.cyan('     ╚═════╝╚═╝  ╚═╝╚═╝  ╚═╝╚═════╝  ╚═════╝╚═╝  ╚═══╝'));
+  console.log(chalk.bold.cyan('     ██████╗██╗  ██╗ █████╗ ██████╗  ██████╗██╗  ██╗██╗███╗   ██╗'));
+  console.log(chalk.bold.cyan('    ██╔════╝██║  ██║██╔══██╗██╔══██╗██╔════╝██║  ██║██║████╗  ██║'));
+  console.log(chalk.bold.cyan('    ██║     ███████║███████║██║  ██║██║     ███████║██║██╔██╗ ██║'));
+  console.log(chalk.bold.cyan('    ██║     ██╔══██║██╔══██║██║  ██║██║     ██╔══██║██║██║╚██╗██║'));
+  console.log(chalk.bold.cyan('    ╚██████╗██║  ██║██║  ██║██████╔╝╚██████╗██║  ██║██║██║ ╚████║'));
+  console.log(chalk.bold.cyan('     ╚═════╝╚═╝  ╚═╝╚═╝  ╚═╝╚═════╝  ╚═════╝╚═╝  ╚═╝╚═╝╚═╝  ╚═══╝'));
   console.log();
-  console.log(chalk.gray('    Hyper-dense UI components for professional tools'));
+  console.log(chalk.gray('    Hyper-dense UI components for professional tools 🗿'));
   console.log();
 
   // Check if already initialized
@@ -40,7 +40,7 @@ export async function init(options: InitOptions) {
     const { proceed } = await prompts({
       type: 'confirm',
       name: 'proceed',
-      message: 'chadcn is already initialized. Do you want to reconfigure?',
+      message: 'chadchin is already initialized. Do you want to reconfigure?',
       initial: false,
     });
     if (!proceed) {
@@ -174,13 +174,13 @@ export async function init(options: InitOptions) {
     };
   }
 
-  const spinner = ora('Initializing chadcn...').start();
+  const spinner = ora('Initializing chadchin...').start();
 
   try {
     // Create config file
-    const configPath = path.join(cwd, 'chadcn.json');
+    const configPath = path.join(cwd, 'chadchin.json');
     await fs.writeJSON(configPath, config, { spaces: 2 });
-    spinner.text = 'Created chadcn.json';
+    spinner.text = 'Created chadchin.json';
 
     // Create CSS file with all theme variables
     const cssPath = path.join(cwd, config.tailwind.css);
@@ -219,10 +219,10 @@ export async function init(options: InitOptions) {
 
     // Summary
     console.log();
-    console.log(chalk.green('✓'), 'chadcn has been initialized with the', chalk.cyan(config.theme), 'theme');
+    console.log(chalk.green('✓'), 'chadchin has been initialized with the', chalk.cyan(config.theme), 'theme');
     console.log();
     console.log('Created files:');
-    console.log(chalk.gray('  •'), 'chadcn.json', chalk.gray('- Configuration'));
+    console.log(chalk.gray('  •'), 'chadchin.json', chalk.gray('- Configuration'));
     console.log(chalk.gray('  •'), config.tailwind.css, chalk.gray('- Theme CSS variables'));
     console.log(chalk.gray('  •'), config.tailwind.config, chalk.gray('- Tailwind configuration'));
     console.log(chalk.gray('  •'), utilsPath.replace(cwd + '/', ''), chalk.gray('- Utility functions'));
@@ -240,8 +240,8 @@ export async function init(options: InitOptions) {
     console.log(chalk.bold('Next steps:'));
     console.log();
     console.log(chalk.gray('  1.'), 'Install the base dependencies above');
-    console.log(chalk.gray('  2.'), 'Add components with', chalk.cyan('npx chadcn add <component>'));
-    console.log(chalk.gray('  3.'), 'Or add all components with', chalk.cyan('npx chadcn add --all'));
+    console.log(chalk.gray('  2.'), 'Add components with', chalk.cyan('npx chadchin add <component>'));
+    console.log(chalk.gray('  3.'), 'Or add all components with', chalk.cyan('npx chadchin add --all'));
     console.log();
 
     // Show components by category

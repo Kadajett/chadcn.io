@@ -2,8 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Import chadcn theme variables */
-@import '@chadcn/ui/themes.css';
+/* Import chadchin theme variables */
+@import '@chadchin/ui/themes.css';
 
 /* Documentation-specific styles */
 @layer base {

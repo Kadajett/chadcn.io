@@ -328,7 +328,7 @@ function generatePlaceholder(componentName: string, filePath: string): string {
 // https://github.com/kadajett/chadcn/tree/main/packages/components/src/components/${filePath}
 //
 // Or install the package directly:
-// npm install @chadcn/ui
+// npm install @chadchin/ui
 
 export {};
 `;

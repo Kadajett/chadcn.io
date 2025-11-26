@@ -1,5 +1,5 @@
 {
-  "name": "@chadcn/docs",
+  "name": "@chadchin/docs",
   "version": "0.0.1",
   "private": true,
   "type": "module",
@@ -10,7 +10,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@chadcn/ui": "workspace:*",
+    "@chadchin/ui": "workspace:*",
     "@mdx-js/loader": "^3.0.1",
     "@mdx-js/react": "^3.0.1",
     "@next/mdx": "^14.2.0",
