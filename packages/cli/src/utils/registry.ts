@@ -1,3 +1,5 @@
+import { TEMPLATES } from './templates.js';
+
 export interface Theme {
   name: string;
   label: string;
@@ -260,29 +262,39 @@ export interface ComponentFile {
   content: string;
 }
 
-// Fetch component files from GitHub or local registry
+// Fetch component files - prioritizes embedded templates, falls back to GitHub
 export async function fetchComponentFiles(componentName: string): Promise<ComponentFile[]> {
   const component = COMPONENTS.find((c) => c.name === componentName);
   if (!component) return [];
 
   const files: ComponentFile[] = [];
+  const templates = getEmbeddedTemplates();
 
   for (const filePath of component.files) {
+    // First try embedded templates (always available, no network needed)
+    if (templates[componentName]?.[filePath]) {
+      let content = templates[componentName][filePath];
+      content = transformImports(content);
+      files.push({
+        name: filePath,
+        content,
+      });
+      continue;
+    }
+
+    // Fallback to fetching from GitHub
     try {
-      // Try fetching from GitHub raw
       const url = `${REGISTRY_BASE_URL}/${filePath}`;
       const response = await fetch(url);
 
       if (response.ok) {
         let content = await response.text();
-        // Transform imports for user's project structure
         content = transformImports(content);
         files.push({
           name: filePath,
           content,
         });
       } else {
-        // Fallback to placeholder
         files.push({
           name: filePath,
           content: generatePlaceholder(componentName, filePath),
@@ -388,17 +400,9 @@ export function getAllDependencies(componentNames: string[]): {
   };
 }
 
-// Component templates embedded at build time
-// This will be populated by the build process or can be manually updated
+// Get embedded templates from the bundled templates file
 function getEmbeddedTemplates(): Record<string, Record<string, string>> {
-  // Import from templates file
-  try {
-    // @ts-ignore - This file is generated
-    const { TEMPLATES } = require('./templates.js');
-    return TEMPLATES;
-  } catch {
-    return {};
-  }
+  return TEMPLATES;
 }
 
 // Get components by category
