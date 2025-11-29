@@ -3,7 +3,7 @@ import ora from 'ora';
 import prompts from 'prompts';
 import fs from 'fs-extra';
 import path from 'path';
-import { getConfig, resolveConfigPaths } from '../utils/config.js';
+import { getConfig, detectTailwindVersion, type TailwindVersion } from '../utils/config.js';
 import { THEMES, COMPONENTS, getComponentsByCategory } from '../utils/registry.js';
 import {
   UTILS_TEMPLATE,
@@ -11,6 +11,7 @@ import {
   TAILWIND_CONFIG_TEMPLATE,
   TAILWIND_CONFIG_TEMPLATE_JS,
   generateCssContent,
+  generateCssContentV4,
 } from '../utils/templates.js';
 
 interface InitOptions {
@@ -61,22 +62,40 @@ export async function init(options: InitOptions) {
     console.log(chalk.yellow('Warning:'), 'No package.json found. Make sure you\'re in the right directory.');
   }
 
+  // Detect Tailwind version
+  const tailwindInfo = await detectTailwindVersion(cwd);
+  console.log(
+    chalk.gray('  Detected:'),
+    tailwindInfo.version === '4'
+      ? chalk.cyan('Tailwind CSS v4') + (tailwindInfo.hasVitePlugin ? chalk.gray(' (Vite plugin)') : '')
+      : chalk.cyan('Tailwind CSS v3') + (tailwindInfo.hasConfig ? chalk.gray(` (${tailwindInfo.configPath})`) : '')
+  );
+  console.log();
+
   let config: {
     style: string;
     theme: string;
-    tailwind: { config: string; css: string; baseColor: string };
+    tailwind: { config?: string; css: string; baseColor: string; version: TailwindVersion };
     aliases: { components: string; utils: string };
     typescript: boolean;
   };
+
+  // Default CSS path based on detection or common locations
+  const defaultCssPath = tailwindInfo.cssPath ||
+    (hasSrcDir ? 'src/index.css' : 'index.css');
 
   if (options.defaults || options.yes) {
     config = {
       style: 'default',
       theme: options.theme || 'photoshop',
       tailwind: {
-        config: hasTsConfig ? 'tailwind.config.ts' : 'tailwind.config.js',
-        css: hasSrcDir ? 'src/styles/globals.css' : 'styles/globals.css',
+        // Only set config path for v3
+        ...(tailwindInfo.version === '3' && {
+          config: hasTsConfig ? 'tailwind.config.ts' : 'tailwind.config.js',
+        }),
+        css: defaultCssPath,
         baseColor: 'slate',
+        version: tailwindInfo.version,
       },
       aliases: {
         components: '@/components/ui',
@@ -116,22 +135,40 @@ export async function init(options: InitOptions) {
     const responses = await prompts([
       {
         type: 'select',
+        name: 'tailwindVersion',
+        message: 'Which Tailwind CSS version are you using?',
+        choices: [
+          {
+            title: 'Tailwind CSS v4',
+            value: '4',
+            description: 'CSS-first config with @theme (Vite, newer projects)',
+          },
+          {
+            title: 'Tailwind CSS v3',
+            value: '3',
+            description: 'JavaScript config file (tailwind.config.js)',
+          },
+        ],
+        initial: tailwindInfo.version === '4' ? 0 : 1,
+      },
+      {
+        type: 'select',
         name: 'theme',
         message: 'Which default theme would you like to use?',
         choices: themeChoices.filter((c) => c.value !== ''),
         initial: 0,
       },
       {
-        type: 'text',
+        type: (prev, values) => values.tailwindVersion === '3' ? 'text' : null,
         name: 'tailwindConfig',
         message: 'Where is your tailwind.config file?',
-        initial: hasTsConfig ? 'tailwind.config.ts' : 'tailwind.config.js',
+        initial: tailwindInfo.configPath || (hasTsConfig ? 'tailwind.config.ts' : 'tailwind.config.js'),
       },
       {
         type: 'text',
         name: 'tailwindCss',
         message: 'Where is your global CSS file?',
-        initial: hasSrcDir ? 'src/styles/globals.css' : 'styles/globals.css',
+        initial: defaultCssPath,
       },
       {
         type: 'text',
@@ -158,13 +195,19 @@ export async function init(options: InitOptions) {
       return;
     }
 
+    const selectedVersion = responses.tailwindVersion as TailwindVersion;
+
     config = {
       style: 'default',
       theme: responses.theme,
       tailwind: {
-        config: responses.tailwindConfig,
+        // Only include config path for v3
+        ...(selectedVersion === '3' && responses.tailwindConfig && {
+          config: responses.tailwindConfig,
+        }),
         css: responses.tailwindCss,
         baseColor: 'slate',
+        version: selectedVersion,
       },
       aliases: {
         components: responses.componentsAlias,
@@ -182,20 +225,26 @@ export async function init(options: InitOptions) {
     await fs.writeJSON(configPath, config, { spaces: 2 });
     spinner.text = 'Created chadchin.json';
 
-    // Create CSS file with all theme variables
+    // Create CSS file with all theme variables (use v4 template if v4)
     const cssPath = path.join(cwd, config.tailwind.css);
     await fs.ensureDir(path.dirname(cssPath));
-    const cssContent = generateCssContent(config.theme, true);
+    const cssContent = config.tailwind.version === '4'
+      ? generateCssContentV4(config.theme, true)
+      : generateCssContent(config.theme, true);
     await fs.writeFile(cssPath, cssContent);
-    spinner.text = 'Created CSS with theme variables';
+    spinner.text = config.tailwind.version === '4'
+      ? 'Created CSS with @theme config (Tailwind v4)'
+      : 'Created CSS with theme variables';
 
-    // Create/update tailwind.config
-    const tailwindConfigPath = path.join(cwd, config.tailwind.config);
-    const tailwindContent = config.typescript
-      ? TAILWIND_CONFIG_TEMPLATE
-      : TAILWIND_CONFIG_TEMPLATE_JS;
-    await fs.writeFile(tailwindConfigPath, tailwindContent);
-    spinner.text = 'Created tailwind.config';
+    // Create/update tailwind.config (only for v3)
+    if (config.tailwind.version === '3' && config.tailwind.config) {
+      const tailwindConfigPath = path.join(cwd, config.tailwind.config);
+      const tailwindContent = config.typescript
+        ? TAILWIND_CONFIG_TEMPLATE
+        : TAILWIND_CONFIG_TEMPLATE_JS;
+      await fs.writeFile(tailwindConfigPath, tailwindContent);
+      spinner.text = 'Created tailwind.config';
+    }
 
     // Create utils file
     const utilsAlias = config.aliases.utils.replace('@/', '');
@@ -219,12 +268,24 @@ export async function init(options: InitOptions) {
 
     // Summary
     console.log();
-    console.log(chalk.green('✓'), 'chadchin has been initialized with the', chalk.cyan(config.theme), 'theme');
+    console.log(
+      chalk.green('✓'),
+      'chadchin has been initialized with the',
+      chalk.cyan(config.theme),
+      'theme',
+      chalk.gray(`(Tailwind v${config.tailwind.version})`)
+    );
     console.log();
     console.log('Created files:');
     console.log(chalk.gray('  •'), 'chadchin.json', chalk.gray('- Configuration'));
-    console.log(chalk.gray('  •'), config.tailwind.css, chalk.gray('- Theme CSS variables'));
-    console.log(chalk.gray('  •'), config.tailwind.config, chalk.gray('- Tailwind configuration'));
+    console.log(
+      chalk.gray('  •'),
+      config.tailwind.css,
+      chalk.gray(config.tailwind.version === '4' ? '- CSS with @theme config' : '- Theme CSS variables')
+    );
+    if (config.tailwind.version === '3' && config.tailwind.config) {
+      console.log(chalk.gray('  •'), config.tailwind.config, chalk.gray('- Tailwind configuration'));
+    }
     console.log(chalk.gray('  •'), utilsPath.replace(cwd + '/', ''), chalk.gray('- Utility functions'));
     console.log();
 

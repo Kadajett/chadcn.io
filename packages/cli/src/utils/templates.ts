@@ -492,6 +492,273 @@ ${themes}
 `;
 }
 
+/**
+ * Generate CSS content for Tailwind CSS v4
+ * Uses @import "tailwindcss" and @theme directives
+ */
+export function generateCssContentV4(defaultTheme: string, includeAllThemes = true): string {
+  const themes = includeAllThemes ? ALL_THEMES_CSS : getThemeCss(defaultTheme);
+
+  return `@import "tailwindcss";
+
+/* ============================================
+   CHADCN THEMING SYSTEM (Tailwind v4)
+   Hyper-dense UI components for professional tools
+   ============================================ */
+
+/* Custom theme values using @theme directive */
+@theme {
+  /* Hyper-dense spacing scale */
+  --spacing-0-5: 2px;
+  --spacing-1: 4px;
+  --spacing-1-5: 6px;
+  --spacing-2: 8px;
+  --spacing-2-5: 10px;
+  --spacing-3: 12px;
+  --spacing-4: 16px;
+  --spacing-5: 20px;
+  --spacing-6: 24px;
+  --spacing-8: 32px;
+  --spacing-panel-sm: 200px;
+  --spacing-panel-md: 280px;
+  --spacing-panel-lg: 320px;
+  --spacing-toolbar: 28px;
+  --spacing-toolbar-lg: 36px;
+
+  /* Compact font sizes for dense UIs */
+  --font-size-2xs: 10px;
+  --font-size-xs: 11px;
+  --font-size-sm: 12px;
+  --font-size-base: 13px;
+  --font-size-lg: 14px;
+
+  --line-height-2xs: 12px;
+  --line-height-xs: 14px;
+  --line-height-sm: 16px;
+  --line-height-base: 18px;
+  --line-height-lg: 20px;
+
+  /* Border radius for controls */
+  --radius-control: 3px;
+  --radius-panel: 4px;
+  --radius-button: 2px;
+
+  /* Animations */
+  --animate-fade-in: fadeIn 150ms ease-out;
+  --animate-fade-out: fadeOut 150ms ease-out;
+  --animate-slide-down: slideDown 150ms ease-out;
+  --animate-slide-up: slideUp 150ms ease-out;
+  --animate-swipe-out: swipeOut 100ms ease-out;
+  --animate-indeterminate: indeterminate 1.5s ease-in-out infinite;
+  --animate-spin-slow: spin 2s linear infinite;
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes fadeOut {
+  0% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+@keyframes slideDown {
+  0% { opacity: 0; transform: translateY(-4px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideUp {
+  0% { opacity: 0; transform: translateY(4px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes swipeOut {
+  0% { transform: translateX(var(--radix-toast-swipe-end-x)); }
+  100% { transform: translateX(100%); }
+}
+
+@keyframes indeterminate {
+  0% { transform: translateX(-100%); }
+  50% { transform: translateX(200%); }
+  100% { transform: translateX(-100%); }
+}
+
+/* ============================================
+   THEME CSS VARIABLES
+   ============================================ */
+
+${themes}
+
+/* ============================================
+   BASE STYLES
+   ============================================ */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  border-color: var(--panel-border);
+}
+
+html {
+  font-size: 13px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'SF Pro Text', system-ui, sans-serif;
+  background-color: var(--surface);
+  color: var(--text);
+  line-height: 1.4;
+}
+
+/* Dense UI scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--surface-sunken);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--control);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--control-hover);
+}
+
+/* Focus visible styles */
+:focus-visible {
+  outline: 1px solid var(--focus-ring);
+  outline-offset: 1px;
+}
+
+/* Selection styles */
+::selection {
+  background-color: var(--selection);
+  color: var(--selection-text);
+}
+
+/* ============================================
+   COMPONENT UTILITIES
+   ============================================ */
+
+/* Panel base */
+.panel {
+  background-color: var(--panel);
+  border: 1px solid var(--panel-border);
+  border-radius: var(--radius-panel);
+}
+
+/* Control base */
+.control {
+  background-color: var(--control);
+  border: 1px solid var(--control-border);
+  border-radius: var(--radius-control);
+  color: var(--text);
+  font-size: var(--font-size-sm);
+  height: 24px;
+  padding-left: 8px;
+  padding-right: 8px;
+  transition: background-color 75ms;
+}
+
+.control:hover {
+  background-color: var(--control-hover);
+}
+
+.control:focus-visible {
+  outline: 1px solid var(--accent);
+}
+
+/* Input base */
+.input-field {
+  background-color: var(--input);
+  border: 1px solid var(--input-border);
+  border-radius: var(--radius-control);
+  color: var(--text);
+  font-size: var(--font-size-sm);
+  height: 24px;
+  padding-left: 8px;
+  padding-right: 8px;
+  transition: background-color 75ms;
+}
+
+.input-field:hover {
+  background-color: var(--input-hover);
+}
+
+.input-field:focus {
+  background-color: var(--input-focus);
+  border-color: var(--accent);
+  outline: none;
+}
+
+/* Label base */
+.label {
+  color: var(--text-label);
+  font-size: var(--font-size-xs);
+  font-weight: 400;
+  user-select: none;
+}
+
+/* Toolbar item */
+.toolbar-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--spacing-toolbar);
+  height: var(--spacing-toolbar);
+  color: var(--icon);
+  border-radius: var(--radius-button);
+  transition: background-color 75ms, color 75ms;
+}
+
+.toolbar-item:hover {
+  color: var(--icon-active);
+  background-color: var(--control-hover);
+}
+
+.toolbar-item[data-active='true'],
+.toolbar-item[aria-pressed='true'] {
+  background-color: var(--control-active);
+  color: var(--icon-active);
+}
+
+/* Dividers */
+.divider-h {
+  height: 1px;
+  background-color: var(--divider);
+}
+
+.divider-v {
+  width: 1px;
+  background-color: var(--divider);
+  align-self: stretch;
+}
+
+/* Animation utilities */
+.animate-in {
+  animation: fadeIn 150ms ease-out;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+`;
+}
+
 function getThemeCss(theme: string): string {
   const themeVars = THEME_VARIABLES[theme] || THEME_VARIABLES['photoshop'];
   return `  /* Default Theme: ${theme} */
